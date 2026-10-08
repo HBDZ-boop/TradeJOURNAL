@@ -1,70 +1,231 @@
-Rewind Journal
-Privacy policy
-Last updated 8 October 2026
+<!doctype html>
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Rewind Journal</title>
+<meta name="description" content="Rewind Journal keeps your trades on your own computer. No accounts, no server, no tracking.">
+<style>
+  :root {
+    --bg: #0e1116; --panel: #161b22; --line: #232a34;
+    --txt: #e5e9ef; --dim: #7d8795; --acc: #2dd4bf; --long: #34d399;
+    --signal: #60a5fa; --r: 7px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--txt); }
+  body {
+    font: 400 15px/1.65 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    padding: 0 16px 72px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; }
 
-Rewind Journal keeps your trading journal on your own computer. There is no account, no sign-in and no server. We cannot see your trades, because they are never sent anywhere.
+  header { padding: 56px 0 28px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; }
+  .mark { width: 34px; height: 34px; display: block; }
+  .wordmark { font-size: 25px; font-weight: 700; letter-spacing: -.01em; }
+  h1 { font-size: 27px; font-weight: 600; margin: 22px 0 6px; letter-spacing: -.01em; }
+  .sub { color: var(--dim); font-size: 13px; margin: 0; }
 
-What stays on your PC
-Everything you put into Rewind is stored in a single folder on your own machine, by default Documents\Rewind:
+  h2 {
+    font-size: 17px; font-weight: 600; margin: 34px 0 10px;
+    padding-top: 22px; border-top: 1px solid var(--line);
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  p { margin: 0 0 13px; }
+  a { color: var(--acc); }
+  strong { color: #fff; font-weight: 600; }
 
-Your trades — prices, sizes, R multiples, profit and loss, dates, instruments, and every tag you apply
-Your notes on each trade and your weekly reviews
-Screenshots and chart images you attach
-Your pre-session check-ins — the sleep, focus, mood and stress ratings, and anything you write alongside them
-Your prop firm account rules and progress against them
-Your settings and CSV exports
-These are ordinary files that belong to you. You can open, copy, back up or delete them without going through Rewind, and uninstalling Rewind does not remove them.
+  .lead {
+    border-left: 3px solid var(--long); background: rgba(52, 211, 153, .07);
+    border-radius: 0 var(--r) var(--r) 0; padding: 15px 18px; margin: 0 0 34px;
+  }
+  .lead p:last-child { margin-bottom: 0; }
 
-Voice dictation
-Rewind can turn speech into text in any notes field. When you hold the microphone button:
+  ul { margin: 0 0 13px; padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  li::marker { color: var(--dim); }
 
-Audio is captured into memory and transcribed on your own computer, by a speech model stored on your machine.
-No audio is ever written to disk, by Rewind or by anything it uses.
-No audio is ever transmitted. Dictation works with the internet switched off entirely.
-Only the resulting text is kept, in the notes field you put it in.
-The microphone is only ever opened while you are holding the button, and is closed again the moment you release it.
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 16px; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--dim); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+  td:first-child { white-space: nowrap; color: var(--signal); }
 
-When Rewind uses the internet
-Rewind works fully offline. There are exactly three reasons it ever connects, and none of them send your journal:
+  .note { color: var(--dim); font-size: 13px; }
+  code {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1px 5px; font-size: 13px; font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  }
+  footer {
+    margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line);
+    color: var(--dim); font-size: 13px;
+  }
+  @media (max-width: 520px) {
+    body { font-size: 14px; }
+    h1 { font-size: 23px; }
+    td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
 
-What	When	What is sent
-Speech model download	Once, and only if you choose to use voice dictation and accept the download prompt	An ordinary file download from Hugging Face. Nothing of yours is uploaded.
-Update check	On launch, in the version downloaded from GitHub only. The Microsoft Store version does not do this — the Store handles its own updates.	A request to the public GitHub releases list. Nothing of yours is uploaded.
-Crash reports	Only if you switch them on. They are off by default.	See below.
-Opening the feedback form or a release page sends you to your own web browser. Rewind does not pass anything about you along with the link.
+<header>
+  <span class="brand">
+    <!-- The mark, copied from app/static/logo.svg so the two cannot drift. -->
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <rect width="100" height="100" rx="22" fill="#141416"/>
+      <path d="M50 20 A30 30 0 1 0 80 50" fill="none" stroke="#60A5FA" stroke-width="7" stroke-linecap="round"/>
+      <polygon points="71,55 89,55 80,41" fill="#60A5FA"/>
+      <line x1="43" y1="33" x2="43" y2="63" stroke="#F2EFE8" stroke-width="3" stroke-linecap="round"/>
+      <rect x="38" y="39" width="10" height="17" rx="2" fill="#F2EFE8"/>
+      <line x1="57" y1="42" x2="57" y2="68" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"/>
+      <rect x="52" y="47" width="10" height="14" rx="2" fill="#60A5FA"/>
+    </svg>
+    <span class="wordmark">Rewind Journal</span>
+  </span>
+  <h1>Privacy policy</h1>
+  <p class="sub">Last updated 8 October 2026</p>
+</header>
 
-Crash reports
-Crash reporting is off unless you turn it on, in the help menu. If you do turn it on, a report contains the error and where in the program it happened — and nothing else.
+<div class="lead">
+  <p><strong>Rewind Journal keeps your trading journal on your own computer.</strong>
+  There is no account, no sign-in and no server. We cannot see your trades,
+  because they are never sent anywhere.</p>
+</div>
 
-Specifically, Rewind strips the following from every report before it leaves your computer:
+<h2>What stays on your PC</h2>
 
-All local variables from the error, which is where a trade, a note or a filename could otherwise appear
-Any request contents
-Any user identifier
-Any extra context attached to the error
-No trade data, journal contents, check-in notes, file paths of your documents or anything identifying you is included in a crash report. Rewind has an automated test that fails the build if any of that could survive the stripping.
+<p>Everything you put into Rewind is stored in a single folder on your own
+machine, by default <code>Documents\Rewind</code>:</p>
 
-What Rewind never does
-No user accounts, no sign-in, no password
-No cloud sync and no server holding your data
-No analytics, no telemetry, no usage tracking
-No advertising and no advertising identifiers
-No selling or sharing of data with anyone, because there is none to share
-No cookies — Rewind is a desktop application, not a website
-Children
-Rewind is a tool for adults keeping a record of their own trading. It is not directed at children and collects no information from anyone.
+<ul>
+  <li>Your <strong>trades</strong> — prices, sizes, R multiples, profit and loss,
+      dates, instruments, and every tag you apply</li>
+  <li>Your <strong>notes</strong> on each trade and your weekly reviews</li>
+  <li><strong>Screenshots</strong> and chart images you attach</li>
+  <li>Your <strong>pre-session check-ins</strong> — the sleep, focus, mood and
+      stress ratings, and anything you write alongside them</li>
+  <li>Your <strong>prop firm account rules</strong> and progress against them</li>
+  <li>Your settings and CSV exports</li>
+</ul>
 
-Your rights
-Data protection law gives you rights to access, correct, export and delete personal data held about you. In Rewind's case these are satisfied directly: your data is already in your possession, in files you control. To export it, use the CSV export or copy the folder. To delete it, delete the folder.
+<p>These are ordinary files that belong to you. You can open, copy, back up or
+delete them without going through Rewind, and uninstalling Rewind does not
+remove them.</p>
 
-There is nothing held about you anywhere else, so there is no request to make and nobody to make it to.
+<h2>Voice dictation</h2>
 
-Changes
-If this policy changes, the date at the top changes with it, and the previous versions remain in the public history of the repository linked below.
+<p>Rewind can turn speech into text in any notes field. When you hold the
+microphone button:</p>
 
-Contact
-Questions about privacy, or anything in this policy:
-journal.rewind@gmail.com
+<ul>
+  <li>Audio is captured into memory and transcribed <strong>on your own
+      computer</strong>, by a speech model stored on your machine.</li>
+  <li><strong>No audio is ever written to disk</strong>, by Rewind or by
+      anything it uses.</li>
+  <li><strong>No audio is ever transmitted.</strong> Dictation works with the
+      internet switched off entirely.</li>
+  <li>Only the resulting text is kept, in the notes field you put it in.</li>
+</ul>
 
-Rewind Journal is published by HBDZ Labs.
-Source and releases: github.com/HBDZ-boop/TradeJOURNAL
+<p>The microphone is only ever opened while you are holding the button, and is
+closed again the moment you release it.</p>
+
+<h2>When Rewind uses the internet</h2>
+
+<p>Rewind works fully offline. There are exactly three reasons it ever connects,
+and none of them send your journal:</p>
+
+<table>
+  <tr><th>What</th><th>When</th><th>What is sent</th></tr>
+  <tr>
+    <td>Speech model download</td>
+    <td>Once, and only if you choose to use voice dictation and accept the
+        download prompt</td>
+    <td>An ordinary file download from Hugging Face. Nothing of yours is
+        uploaded.</td>
+  </tr>
+  <tr>
+    <td>Update check</td>
+    <td>On launch, in the version downloaded from GitHub only. <strong>The
+        Microsoft Store version does not do this</strong> — the Store handles
+        its own updates.</td>
+    <td>A request to the public GitHub releases list. Nothing of yours is
+        uploaded.</td>
+  </tr>
+  <tr>
+    <td>Crash reports</td>
+    <td>Only if you switch them on. They are <strong>off by default</strong>.</td>
+    <td>See below.</td>
+  </tr>
+</table>
+
+<p class="note">Opening the feedback form or a release page sends you to your own
+web browser. Rewind does not pass anything about you along with the link.</p>
+
+<h2>Crash reports</h2>
+
+<p>Crash reporting is <strong>off unless you turn it on</strong>, in the help
+menu. If you do turn it on, a report contains the error and where in the
+program it happened — and nothing else.</p>
+
+<p>Specifically, Rewind strips the following from every report before it leaves
+your computer:</p>
+
+<ul>
+  <li>All local variables from the error, which is where a trade, a note or a
+      filename could otherwise appear</li>
+  <li>Any request contents</li>
+  <li>Any user identifier</li>
+  <li>Any extra context attached to the error</li>
+</ul>
+
+<p><strong>No trade data, journal contents, check-in notes, file paths of your
+documents or anything identifying you is included in a crash report.</strong>
+Rewind has an automated test that fails the build if any of that could survive
+the stripping.</p>
+
+<h2>What Rewind never does</h2>
+
+<ul>
+  <li>No user accounts, no sign-in, no password</li>
+  <li>No cloud sync and no server holding your data</li>
+  <li>No analytics, no telemetry, no usage tracking</li>
+  <li>No advertising and no advertising identifiers</li>
+  <li>No selling or sharing of data with anyone, because there is none to share</li>
+  <li>No cookies — Rewind is a desktop application, not a website</li>
+</ul>
+
+<h2>Children</h2>
+
+<p>Rewind is a tool for adults keeping a record of their own trading. It is not
+directed at children and collects no information from anyone.</p>
+
+<h2>Your rights</h2>
+
+<p>Data protection law gives you rights to access, correct, export and delete
+personal data held about you. In Rewind's case these are satisfied directly:
+your data is already in your possession, in files you control. To export it,
+use the CSV export or copy the folder. To delete it, delete the folder.</p>
+
+<p>There is nothing held about you anywhere else, so there is no request to make
+and nobody to make it to.</p>
+
+<h2>Changes</h2>
+
+<p>If this policy changes, the date at the top changes with it, and the previous
+versions remain in the public history of the repository linked below.</p>
+
+<h2>Contact</h2>
+
+<p>Questions about privacy, or anything in this policy:<br>
+<a href="mailto:journal.rewind@gmail.com">journal.rewind@gmail.com</a></p>
+
+<footer>
+  Rewind Journal is published by HBDZ Labs.<br>
+  Source and releases: <a href="https://github.com/HBDZ-boop/TradeJOURNAL">github.com/HBDZ-boop/TradeJOURNAL</a>
+</footer>
+
+</div>
+</body>
+</html>
