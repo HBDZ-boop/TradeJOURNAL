@@ -1,0 +1,70 @@
+Rewind Journal
+Privacy policy
+Last updated 8 October 2026
+
+Rewind Journal keeps your trading journal on your own computer. There is no account, no sign-in and no server. We cannot see your trades, because they are never sent anywhere.
+
+What stays on your PC
+Everything you put into Rewind is stored in a single folder on your own machine, by default Documents\Rewind:
+
+Your trades — prices, sizes, R multiples, profit and loss, dates, instruments, and every tag you apply
+Your notes on each trade and your weekly reviews
+Screenshots and chart images you attach
+Your pre-session check-ins — the sleep, focus, mood and stress ratings, and anything you write alongside them
+Your prop firm account rules and progress against them
+Your settings and CSV exports
+These are ordinary files that belong to you. You can open, copy, back up or delete them without going through Rewind, and uninstalling Rewind does not remove them.
+
+Voice dictation
+Rewind can turn speech into text in any notes field. When you hold the microphone button:
+
+Audio is captured into memory and transcribed on your own computer, by a speech model stored on your machine.
+No audio is ever written to disk, by Rewind or by anything it uses.
+No audio is ever transmitted. Dictation works with the internet switched off entirely.
+Only the resulting text is kept, in the notes field you put it in.
+The microphone is only ever opened while you are holding the button, and is closed again the moment you release it.
+
+When Rewind uses the internet
+Rewind works fully offline. There are exactly three reasons it ever connects, and none of them send your journal:
+
+What	When	What is sent
+Speech model download	Once, and only if you choose to use voice dictation and accept the download prompt	An ordinary file download from Hugging Face. Nothing of yours is uploaded.
+Update check	On launch, in the version downloaded from GitHub only. The Microsoft Store version does not do this — the Store handles its own updates.	A request to the public GitHub releases list. Nothing of yours is uploaded.
+Crash reports	Only if you switch them on. They are off by default.	See below.
+Opening the feedback form or a release page sends you to your own web browser. Rewind does not pass anything about you along with the link.
+
+Crash reports
+Crash reporting is off unless you turn it on, in the help menu. If you do turn it on, a report contains the error and where in the program it happened — and nothing else.
+
+Specifically, Rewind strips the following from every report before it leaves your computer:
+
+All local variables from the error, which is where a trade, a note or a filename could otherwise appear
+Any request contents
+Any user identifier
+Any extra context attached to the error
+No trade data, journal contents, check-in notes, file paths of your documents or anything identifying you is included in a crash report. Rewind has an automated test that fails the build if any of that could survive the stripping.
+
+What Rewind never does
+No user accounts, no sign-in, no password
+No cloud sync and no server holding your data
+No analytics, no telemetry, no usage tracking
+No advertising and no advertising identifiers
+No selling or sharing of data with anyone, because there is none to share
+No cookies — Rewind is a desktop application, not a website
+Children
+Rewind is a tool for adults keeping a record of their own trading. It is not directed at children and collects no information from anyone.
+
+Your rights
+Data protection law gives you rights to access, correct, export and delete personal data held about you. In Rewind's case these are satisfied directly: your data is already in your possession, in files you control. To export it, use the CSV export or copy the folder. To delete it, delete the folder.
+
+There is nothing held about you anywhere else, so there is no request to make and nobody to make it to.
+
+Changes
+If this policy changes, the date at the top changes with it, and the previous versions remain in the public history of the repository linked below.
+
+Contact
+Questions about privacy, or anything in this policy:
+journal.rewind@gmail.com
+
+Rewind Journal is published by HBDZ Labs.
+Source and releases: github.com/HBDZ-boop/TradeJOURNAL
